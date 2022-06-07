@@ -15,7 +15,8 @@ S_OBJS	=	${S_SRCS:.c=.o}
 all: $(C_NAME) $(S_NAME)
 
 $(C_NAME): $(C_OBJS)
-	$(CC) $(CFLAGS) -o $(C_NAME) $(C_OBJS)
+	$(MAKE) -C ./libft
+	$(CC) $(CFLAGS) -o $(C_NAME) $(C_OBJS) $(LIB)
 
 $(S_NAME): $(S_OBJS)
 	$(MAKE) -C ./libft
