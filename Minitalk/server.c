@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:45 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/08 02:22:19 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/08 03:05:29 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include "server.h"
 #include "libft/libft.h"
 
-void	action(int signum, siginfo_t *info, void *context)
+static void	action(int signum, siginfo_t *info, void *context)
 {
 	static struct s_character	chr;
 
@@ -51,8 +51,10 @@ int	main(void)
 	act.sa_sigaction = action;
 	sigemptyset(&act.sa_mask);
 	act.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &act, NULL);
-	sigaction(SIGUSR2, &act, NULL);
+	if (sigaction(SIGUSR1, &act, NULL) < 0)
+		exit(1);
+	if (sigaction(SIGUSR2, &act, NULL) < 0)
+		exit(1);
 	while (1)
 		pause();
 	return (0);

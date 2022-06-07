@@ -6,11 +6,10 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:42 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/08 02:25:28 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/08 03:09:45 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <signal.h>
@@ -37,7 +36,7 @@ bool	parse_args(struct s_args *args, int argc, char *argv[])
 {
 	if (!args || argc != 3 || !check_argv(argv[1]))
 	{
-		printf("parse error");
+		ft_putstr_fd("parse error", 1);
 		return (false);
 	}
 	args->pid = ft_atoi(argv[1]);
@@ -56,7 +55,7 @@ static void	send_char(int pid, char c)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(200);
+		usleep(50);
 		current_bit++;
 	}
 }
