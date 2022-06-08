@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:42 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/08 16:50:49 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/08 21:45:44 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int	main(int argc, char *argv[])
 	if (!parse_args(&args, argc, argv))
 		exit(1);
 	if (args.pid < 100 || args.pid > 99998)
+		exit(1);
+	if (ft_strlen(args.str) > 10000)
 		exit(1);
 	if (!send_string(&args))
 		exit (1);
