@@ -3,7 +3,7 @@ S_NAME = server
 
 LIB = libft/libft.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror#-g3 -fsanitize=address -fsanitize=undefined
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=undefined
 
 C_SRCS = client.c
 S_SRCS = server.c

@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:42 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/08 03:43:23 by khirohas         ###   ########.fr       */
+/*   Updated: 2022/06/08 16:50:49 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 #include <ctype.h>
 #include <signal.h>
 #include <unistd.h>
+#include <stdbool.h>
+#include <errno.h>
 #include "client.h" 
 #include "libft/libft.h"
 
-bool	check_argv(char *str_pid)
+static bool	check_argv(char *str_pid)
 	{
 	size_t	i;
 
@@ -32,7 +34,7 @@ bool	check_argv(char *str_pid)
 	return (true);
 }
 
-bool	parse_args(struct s_args *args, int argc, char *argv[])
+static bool	parse_args(struct s_args *args, int argc, char *argv[])
 {
 	if (!args || argc != 3 || !check_argv(argv[1]))
 	{
@@ -60,16 +62,20 @@ static void	send_char(int pid, char c)
 	}
 }
 
-void	send_string(struct s_args *args)
+static bool	send_string(struct s_args *args)
 {
 	size_t	i;
 
+	errno = 0;
 	i = 0;
 	while (args->str[i] != '\0')
 	{
 		send_char(args->pid, args->str[i]);
 		i++;
 	}
+	if (errno != 0)
+		return (false);
+	return (true);
 }
 
 int	main(int argc, char *argv[])
@@ -80,6 +86,7 @@ int	main(int argc, char *argv[])
 		exit(1);
 	if (args.pid < 100 || args.pid > 99998)
 		exit(1);
-	send_string(&args);
+	if (!send_string(&args))
+		exit (1);
 	return (0);
 }
