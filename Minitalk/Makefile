@@ -32,6 +32,7 @@ clean:
 .PHONY: fclean
 fclean: clean
 	rm -f $(C_NAME) $(S_NAME)
+	rm -f $(LIB)
 
 .PHONY: re
 re: fclean all
