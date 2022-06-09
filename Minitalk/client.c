@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:42 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 09:58:29 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 10:13:37 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,15 @@ static void	send_char(int pid, char c)
 	while (current_bit < 8)
 	{
 		if (c & (1 << current_bit))
-			(kill(pid, SIGUSR2) < 0)
+		{
+			if (kill(pid, SIGUSR2) < 0)
+				exit(1);
+		}
 		else
-				kill(pid, SIGUSR1);
+		{ 
+			if (kill(pid, SIGUSR1) < 0)
+				exit(1);
+		}
 		usleep(50);
 		current_bit++;
 	}
