@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:42 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 09:17:37 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 09:20:57 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static bool	check_argv(char *str_pid)
 	size_t	i;
 
 	i = 0;
+	if (str_pid == '\n')
+		return (false);
 	while (str_pid[i])
 	{
 		if (!ft_isdigit(str_pid[i]))
