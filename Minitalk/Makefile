@@ -5,7 +5,7 @@ LIB = libft/libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address -fsanitize=undefined
 
-C_SRCS = client.c
+C_SRCS = client.c parse.c send.c
 S_SRCS = server.c
 
 C_OBJS	=	${C_SRCS:.c=.o}

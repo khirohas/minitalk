@@ -6,18 +6,11 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:45 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/08 23:03:05 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 11:23:32 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <signal.h>
-#include <unistd.h>
-#include <strings.h>
-#include <sys/types.h>
-#include <unistd.h>
-#include "server.h"
-#include "libft/libft.h"
+#include "client.h"
 
 //この関数はシグナルハンドラである。今回はボーナスも鑑みてsa.sigactionで送信側のpidを参照できるように一応はしているが、時間の関係上使用していない。
 //この関数内で使っているのはシグナルセーフなwrite関数のみ。また変数もハンドラ内で宣言したstaticな構造体変数のみを変更している。
@@ -46,7 +39,6 @@ static void	print_pid(void)
 	ft_putnbr_fd(getpid(), 1);
 	ft_putchar_fd('\n', 1);
 }
-
 
 //このプログラムは実行時に一度pidを出力し、シグナルを待つ。シグナルを受信した場合、action関数内でそのシグナルを8bitの文字情報として一文字づつ出力する。
 //なお、sigactionにエラーが起きた場合exitする。
