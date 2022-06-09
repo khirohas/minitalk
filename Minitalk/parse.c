@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:16:40 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 11:27:13 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 11:30:09 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	ft_atopid(const char *a)
 	return (num);
 }
 
-//この関数はコマンドライン第一引数が数字のみかを調べる。（厳密にはINTの最大値以内かも確認する必要ありだが、オーバーフローしたとしてもpidのあたいで正常に弾かれるので良い。）
 static bool	check_argv(char *str_pid)
 {
 	size_t	i;
@@ -46,7 +45,6 @@ static bool	check_argv(char *str_pid)
 	return (true);
 }
 
-//この関数はコマンドライン引数がSubject通りか確認したうえで、s_args構造体にサーバーのpidと出力するべき文字列を格納する。
 bool	parse_args(struct s_args *args, int argc, char *argv[])
 {
 	if (!args || argc != 3 || !check_argv(argv[1]))
