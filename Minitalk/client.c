@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:42 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 03:51:38 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 09:17:37 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,7 @@ static bool	send_string(struct s_args *args)
 
 //このプログラムはpidと文字列を格納する構造体s_argsににコマンドライン引数の情報を格納し、文字列を指定されたpidを持つプロセスに1bitづつ送信する。
 //エラーハンドリングは以下の通り
-//a)コマンドライン引数が三つでない場合、b)第一引数が数字以外で構成されている場合、c)pidが100以下99998以上の場合、
-//また、安全な動作を確約するため最大出力可能文字数は10000文字とする。
+//a)コマンドライン引数が三つでない場合、b)第一引数が数字以外で構成されている場合、c)pidが100以下99998以上の場合
 int	main(int argc, char *argv[])
 {
 	struct s_args	args;
@@ -92,8 +91,6 @@ int	main(int argc, char *argv[])
 	if (!parse_args(&args, argc, argv))
 		exit(1);
 	if (args.pid < 100 || args.pid > 99998)
-		exit(1);
-	if (ft_strlen(args.str) > 10000)
 		exit(1);
 	if (!send_string(&args))
 		exit (1);
