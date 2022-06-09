@@ -6,13 +6,12 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:15:59 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 11:22:00 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 11:30:37 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-//この関数は１文字を1bitづつpidに向けて送る。ビット演算を使うことで、char型の8bit情報を１bitづつ送ることができる。
 static void	send_char(int pid, char c)
 {
 	int	current_bit;
@@ -34,7 +33,7 @@ static void	send_char(int pid, char c)
 		current_bit++;
 	}
 }
-//この関数は文字列をプロセスに送る。send_char内のKillでエラーが起きた場合、falseを返す。
+
 bool	send_string(struct s_args *args)
 {
 	size_t	i;

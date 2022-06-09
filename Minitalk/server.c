@@ -6,15 +6,12 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:45 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 11:23:32 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 11:31:33 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-//この関数はシグナルハンドラである。今回はボーナスも鑑みてsa.sigactionで送信側のpidを参照できるように一応はしているが、時間の関係上使用していない。
-//この関数内で使っているのはシグナルセーフなwrite関数のみ。また変数もハンドラ内で宣言したstaticな構造体変数のみを変更している。
-//具体的な動作としては、chr.characterの一番左bitから順に、シグナルがSIGUSR2の場合１、そうでない場合は0を8bit分操作している。8bitに達した時点でそれを出力。繰り返す。
 static void	action(int signum, siginfo_t *info, void *context)
 {
 	static struct s_character	chr;
@@ -33,15 +30,12 @@ static void	action(int signum, siginfo_t *info, void *context)
 	}
 }
 
-//この関数はpidを出力する。
 static void	print_pid(void)
 {
 	ft_putnbr_fd(getpid(), 1);
 	ft_putchar_fd('\n', 1);
 }
 
-//このプログラムは実行時に一度pidを出力し、シグナルを待つ。シグナルを受信した場合、action関数内でそのシグナルを8bitの文字情報として一文字づつ出力する。
-//なお、sigactionにエラーが起きた場合exitする。
 int	main(void)
 {
 	struct sigaction	act;
