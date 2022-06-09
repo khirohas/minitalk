@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:42 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 09:20:57 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 09:58:29 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	check_argv(char *str_pid)
 	size_t	i;
 
 	i = 0;
-	if (str_pid == '\n')
+	if (*str_pid == '\0')
 		return (false);
 	while (str_pid[i])
 	{
@@ -59,10 +59,10 @@ static void	send_char(int pid, char c)
 	while (current_bit < 8)
 	{
 		if (c & (1 << current_bit))
-			kill(pid, SIGUSR2);
+			(kill(pid, SIGUSR2) < 0)
 		else
-			kill(pid, SIGUSR1);
-		usleep(500);
+				kill(pid, SIGUSR1);
+		usleep(50);
 		current_bit++;
 	}
 }
