@@ -6,13 +6,13 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 11:16:40 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 11:21:35 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/09 11:27:13 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "client.h"
 
-int	ft_atopid(const char *a)
+static int	ft_atopid(const char *a)
 {
 	unsigned int	num;
 	size_t			i;
