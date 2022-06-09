@@ -6,7 +6,7 @@
 /*   By: keihirohashi <keihirohashi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 02:17:45 by keihirohash       #+#    #+#             */
-/*   Updated: 2022/06/09 11:31:33 by keihirohash      ###   ########.fr       */
+/*   Updated: 2022/06/10 03:27:34 by keihirohash      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	action(int signum, siginfo_t *info, void *context)
 	if (chr.current_bit == 8)
 	{
 		if (chr.character != '\0')
-			write(1, &chr.character, 1);
+			write(1, (char *)&chr.character, 1);
 		chr.current_bit = 0;
 		chr.character = 0;
 	}
